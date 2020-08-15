@@ -40,7 +40,7 @@ mv ../../server/spigot.jar ../../backup/server/`date +"%Y-%m-%H-spigot.jar"` && 
 # Install jar
 mv spigot-1.*.jar ../../server/spigot.jar && echo "Install Successful"
 
-# Re-establish permissions if this was run by any user other than minecraft.
+# Re-establish permissions if this was run by root (which it must be if not run by minecraft).
 if [[ $(whoami) = "root" ]]
 then
         echo "Re-establishing file structure permissions since this was run as root."
