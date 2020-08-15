@@ -1,7 +1,11 @@
 #!/bin/env bash
+#
+#
+# Modified Spigot update script from https://teilgedanken.de/Blog/post/setting-up-a-minecraft-server-using-systemd/.
+# I Added a couple of different options to extend functionality, as well as a check to restore proper file permissions at the end since I found those would get messed up when I sudoed things.
+
 
 # Read help option and exit.
-
 if [[ $1 = "--help" ]]
 then
         echo "Run this script to update Spigot and back up the original jar. Pass the option -u if you want to force the Spigot BuildTools to update."
