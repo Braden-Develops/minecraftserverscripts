@@ -8,7 +8,7 @@ After=network.target
 [Service]
 User=minecraft
 Group=minecraft
-Nice=5
+Nice=0
 EnvironmentFile=-/var/minecraft/unit.conf
 KillMode=none
 SuccessExitStatus=0 1
