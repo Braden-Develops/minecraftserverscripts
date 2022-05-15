@@ -1,0 +1,24 @@
+[Unit]
+Description=Minecraft Server Lobby
+
+Wants=network.target
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+Type=forking
+
+InaccessibleDirectories=/root /sys /srv -/opt /media -/lost+found
+WorkingDirectory=/home/ubuntu/lobbyminecraft
+
+# Start a new screen so that we can return to this console if needed, and exit gracefully
+ExecStart=/usr/bin/screen -L -Logfile lobbyminecraft.log -h 1024 -dmS lobbyminecraft ./start.sh
+
+# Send 'end' to the bungeecord console
+ExecStop=/usr/bin/screen -p 0 -S lobbyminecraft -X stuff "end^M"
+# Wait for the PID to die - otherwise it's killed after this command finishes!
+ExecStop=/bin/bash -c "while ps -p $MAINPID > /dev/null; do /bin/sleep 1; done"
+
+[Install]
+WantedBy=multi-user.target
